@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ultralatino</title>
+
+  <!-- Fuentes y AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-fondo: #121212;
+      --color-panel: #3b0a3d; /* rosa bandera oscuro */
+      --color-texto: #f0f0f0;
+      --color-acento: #8b005d; /* rosa bandera más oscuro para acentos */
+      --color-secundario: #a3164a; /* otra tonalidad de rosa */
+      --color-boton-hover: #720041; /* hover más oscuro */
+      --sombra-boton: rgba(139, 0, 93, 0.4);
+      --color-whatsapp: #8b005d; /* mismo rosa bandera para whatsapp */
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-image: url(images.jfif);
+      color: var(--color-texto);
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--color-acento), var(--color-acento));
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      box-shadow: 0 4px 20px var(--sombra-boton);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    header h1 {
+      font-family: 'Anton', sans-serif;
+      font-weight: 700;
+      font-size: 3rem;
+      color: white;
+      letter-spacing: 4px;
+      margin: 0;
+      user-select: none;
+    }
+
+    .imagen-flotante {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+      object-fit: cover;
+      user-select: none;
+    }
+
+    .imagen-panel {
+      width: 100%;
+      border-radius: 20px;
+      margin-top: 25px;
+      box-shadow: 0 0 30px rgba(139, 0, 93, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .imagen-panel:hover {
+      transform: scale(1.03);
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 20px 60px;
+    }
+
+    article, section {
+      background-color: var(--color-panel);
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      text-align: center;
+      color: var(--color-texto);
+    }
+
+    h2, h3 {
+      margin-top: 0;
+      font-weight: 700;
+      color: var(--color-acento);
+      letter-spacing: 1.5px;
+      user-select: none;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 25px;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-weight: 300;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #ddd;
+      max-width: 720px;
+      margin: 0 auto;
+      user-select: text;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 0 40px var(--color-acento);
+      outline: none;
+      margin-top: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      background: var(--color-acento);
+      color: white;
+      padding: 16px 40px;
+      margin-top: 30px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 8px 25px var(--sombra-boton);
+      transition: all 0.35s ease-in-out;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .button:hover, .button:focus {
+      background-color: var(--color-boton-hover);
+      box-shadow: 0 12px 40px var(--sombra-boton);
+      transform: scale(1.08);
+      outline: none;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 65px;
+      height: 65px;
+      background-color: var(--color-whatsapp);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 18px rgba(139, 0, 93, 0.7);
+      z-index: 10000;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.2);
+    }
+
+    .whatsapp-float img {
+      width: 40px;
+      height: 40px;
+      pointer-events: none;
+      user-select: none;
+      filter: brightness(0) invert(1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 10px;
+      font-size: 0.9rem;
+      color: #777;
+      user-select: none;
+      background-color: #0a0a0a;
+      box-shadow: inset 0 1px 5px rgba(255,255,255,0.05);
+    }
+
+    /* Contenedor para artículos en dos columnas */
+    .articles-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .articles-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .imagen-flotante {
+        width: 60px;
+        height: 60px;
+      }
+      .button {
+        font-size: 1.1rem;
+        padding: 14px 28px;
+      }
+      article, section {
+        padding: 30px 20px;
+        margin-bottom: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <img src="WhatsApp Image 2025-06-02 at 1.45.54 PM.jpeg" alt="Logo Ultralatino" class="imagen-flotante" />
+    <h1>Ultralatino</h1>
+  </header>
+
+  <a href="https://wa.me/qr/NHPDCVKJ7RGLD1" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp Icon" />
+  </a>
+
+  <main class="container">
+
+    <section>
+      <h3>¡Descubre el poder del entretenimiento latino con Ultralatino!</h3>
+      ¿Cansado de opciones limitadas? Con Ultralatino, por $250 mensuales, disfruta de todo el entretenimiento latino que puedas imaginar en hasta tres dispositivos a la vez. Películas, series, documentales… ¡todo en un solo lugar!  Ultralatino: Tu destino para el entretenimiento sin fin.
+    </section>
+
+    <br><br>
+
+    <section id="video" data-aos="fade-up" data-aos-delay="200">
+      <h2>Video de Presentación</h2>
+      <video controls preload="metadata" poster="img/video-poster.jpg" playsinline>
+        <source src="WhatsApp Video 2025-06-02 at 1.28.42 PM.mp4" type="video/mp4" />
+        Tu navegador no soporta la reproducción de video.
+      </video>
+    </section>
+<br><br><br>
+    <section id="app" data-aos="fade-up" data-aos-delay="300">
+      <h2>Descarga Nuestra App</h2>
+      <a href="http://bit.ly/ultraibo" target="_blank" rel="noopener" class="button">Android</a>
+      <br />
+    </section>
+<br><br><br>
+    <div class="articles-columns">
+      <article data-aos="fade-up" data-aos-delay="100">
+        <h3>Bienvenidos a Ultralatino</h3>
+        <p>
+          La mejor plataforma de entretenimiento para todo el público. Series, películas, documentales, canales de TV y eventos deportivos en español, con la mejor calidad y disponibilidad.
+        </p>
+        <img src="251.jpeg" alt="Imagen destacada 1" class="imagen-panel" />
+      </article>
+
+      <article data-aos="fade-up" data-aos-delay="400">
+        <h3>Sobre Ultralatino</h3>
+        <p>
+          Ultralatino es una plataforma de streaming líder en contenido latino. Ofrece series, películas, documentales y shows en español. Perfecta para todos los gustos con una interfaz intuitiva y funcionalidades avanzadas.
+        </p>
+        <img src="252.jpeg" alt="Imagen contenido" class="imagen-panel" />
+      </article>
+    </div>
+
+    <section id="pago" data-aos="fade-up" data-aos-delay="500">
+      <h2>Pago Seguro</h2>
+      <div id="paypal-container-PKUP45U4H9VHA" style="margin-bottom: 20px;"></div>
+      <a href="https://www.paypal.com/paypalme/my/profile" target="_blank" rel="noopener" class="button">Pagar con PayPal</a>
+    </section>
+
+  </main>
+  <footer>
+    &copy; 2025 Servicios de Televisión. Todos los derechos reservados.
+  </footer>
+
+  <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+  <script>
+    paypal.HostedButtons({
+      hostedButtonId: "PKUP45U4H9VHA",
+    }).render("#paypal-container-PKUP45U4H9VHA");
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1200,
+      once: true,
+      easing: 'ease-in-out',
+    });
+  </script>
+
+</body>
+</html>
